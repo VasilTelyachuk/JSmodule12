@@ -1,7 +1,7 @@
 {{#each this}}
+ <h2>{{name}}</h2>
   <div class='container'>
-    <div class='card-info'>
-      <h2>{{name}}</h2>
+      <div class='card-info'>
       <span class='info'>Capital:<span class='info-index'> {{capital}}</span></span>
       <span class='info'>Population:<span class='info-index'> {{population}}</span></span>
       <span class='info'>Languages: </span>
@@ -10,8 +10,8 @@
         {{/each}}
       </ul>
     </div>
-  </div>
-  <div class='img-box'>
+    <div class='img-box'>
     <img src='{{flags.png}}' alt='{{capital}}' width='320' />
+  </div>
   </div>
 {{/each}}

@@ -1,6 +1,6 @@
 const refs = {
   form: document.querySelector('.js-form'),
-  articles: document.querySelector('.js-articles'),
+  countryList: document.querySelector('.js-list'),
 };
 
 export default refs;

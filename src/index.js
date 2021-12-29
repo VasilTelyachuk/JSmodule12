@@ -1,32 +1,37 @@
-// import './js/markup';
 import './sass/main.scss';
 import debounce from 'lodash.debounce';
-// import './js/fetchCountries';
-import './js/refs';
-import cardMarkup from './templates/markupCard.hbs';
+// import cardMarkup from './templates/markupCard.hbs';
+// import listMarkup from './templates/markupList.hbs';
 import refs from './js/refs';
-
-// const formRef = document.querySelector('.js-form');
+import fetchCountries from './js/fetchCountries';
 
 refs.form.addEventListener('input', debounce(inputHandler, 500));
 
 function inputHandler(event) {
-  fetch(`https://restcountries.com/v2/name/${event.target.value}`)
-    .then(res => res.json())
-    .then(data => {
-      if ((data.length >= 2) & (data.length < 10)) {
-        console.log('list');
-      }
+  const searchQuery = event.target.value;
+  // console.dir(event.target.value);
+  refs.countryList.innerHTML = ''; // скинуть запрос
+  refs.form.reset();    //очистить инпут
 
-      if (data.length === 1) {
-        console.dir(data);
+  fetchCountries(searchQuery);
 
-        const markup = cardMarkup(data);
-        refs.articles.insertAdjacentHTML('beforeend', markup);
-      }
+  // const url = `https://restcountries.com/v2/name/${event.target.value}`;
+  // fetch(url)
+  //   .then(res => res.json())
+  //   .then(data => {
+  //     if ((data.length >= 2) & (data.length < 10)) {
+  //       // const markup = listMarkup(data);
+  //       // refs.countryList.insertAdjacentHTML('beforeend', markup);
+  //     }
 
-      if (data.length > 10) {
-        console.log('error');
-      }
-    });
+  //     if (data.length === 1) {
+  //       console.dir(data);
+  //       // const markup = cardMarkup(data);
+  //       // refs.countryList.insertAdjacentHTML('beforeend', markup);
+  //     }
+
+  //     if (data.length > 10) {
+  //       error({ text: 'Too many matches found. Please enter specific query!' });
+  //     }
+  //   });
 }
